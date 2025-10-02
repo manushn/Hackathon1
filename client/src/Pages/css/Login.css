@@ -1,0 +1,76 @@
+
+.login-form-main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.otpform,
+.login-form-main-con{
+    display: flex;
+    flex-direction: column;
+}
+.login-form-main-con{
+    width: 250px;
+    border: 1px solid grey;
+    padding: 10px;
+    margin-top: 20px;
+    min-height: 280px;
+    border-radius: 10px;
+    box-shadow: 2px 1px 2px rgb(183, 183, 183);
+}
+.login-form-main-con:hover{
+    box-shadow: 2px 2px 2px rgb(183, 183, 183);
+}
+.login-form-main-con h2{
+    text-align: center;
+    color: black;
+}
+
+.login-form-main label{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.login-form-main-con input{
+    padding: 8px;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+.resend-otp{
+    margin-top: 10px;
+
+}
+.resend-otp button{
+    padding: 5px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+.resend-otp button:hover{
+    color: green;
+    background-color: white;
+    border: 1px solid green;
+    cursor: pointer;
+}
+.login-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.login-btn button{
+    background-color: rgb(50, 139, 228);
+    padding: 8px;
+    border-radius: 5px;
+    width: 100px;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+}
+.login-btn button:hover{
+    color: rgb(50, 139, 228);
+    background-color: white;
+    border: 1px solid rgb(50, 139, 228);
+}
