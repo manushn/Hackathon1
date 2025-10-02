@@ -74,3 +74,27 @@
     background-color: white;
     border: 1px solid rgb(50, 139, 228);
 }
+
+.emessage-main{
+    display: flex;
+    position: absolute;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+
+}
+.emessage-con{
+    border: 1px solid grey;
+    width: 200px;
+    background-color: rgb(255, 221, 221);
+    border:none;
+    border-radius: 5px;
+}
+.emessage-con p{
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+}
+

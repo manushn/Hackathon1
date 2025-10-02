@@ -10,9 +10,9 @@ function header() {
                 <img src="/images/mcarelogo.png" alt="Logo" />
                 <h2>MCare</h2>
             </div>
-            {sessionStorage.getItem("Islogedin")?(
+            {sessionStorage.getItem("Token")?(
                 <div className="head-btn">
-                    <button>Logout</button>
+                    <button onClick={()=>{sessionStorage.removeItem("Token");navigate("/login")}}>Logout</button>
                 </div>
             ):(
                 <div className="head-btn">

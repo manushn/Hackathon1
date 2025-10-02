@@ -13,7 +13,7 @@ function Home() {
                 <h2>MCare</h2>
             </div>
             <div className="head-btn">
-              <button onClick={()=>{navigate("/login")}}>Login</button>
+              <button onClick={()=>{navigate("/admindashboard")}}>Login</button>
             </div>
         </div>
 
