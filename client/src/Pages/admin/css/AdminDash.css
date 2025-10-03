@@ -52,7 +52,7 @@
   cursor: pointer;
   margin: 5px 0 0 5%; 
   font-size: 14px;
-  transition: all 0.2s ease; /
+  transition: all 0.2s ease; 
 }
 
 
@@ -85,14 +85,14 @@
     justify-content: center;
     position: absolute;
     position: fixed;
-    top: 0;
-    margin-top: 730px;
+    bottom: 0;
+    margin-bottom:1px;
 }
 
 .router-con-main{
     display: flex;
     width: 50%;
-    background-color: rgb(40, 120, 200);
+    background-color: rgba(40, 120, 200, 1);
     justify-content: space-evenly;
     border-radius: 10px;
 

@@ -1,13 +1,15 @@
 import React from 'react'
 import Header from '../../components/header'
+import { useNavigate } from 'react-router-dom'
 import "./css/AdminDash.css"
 
 function AdminDash() {
+    const navigate=useNavigate()
   return (
     <div className="admindash-main">
         <Header/>
         <div className="admindash-body">
-            <h1>Dashboard</h1>
+            <h2>Dashboard</h2>
             <div className="admindash-body-card">
                 <div className="admindash-body-card-con">
                     <p>Total Appoinments</p>
@@ -27,14 +29,14 @@ function AdminDash() {
                 <h3>Quick Actions</h3>
                 <div className="admindash-body-actions-btn">
                     <button>Manage Appoinments</button>
-                    <button>Manage Doctors</button>
+                    <button onClick={()=>{navigate("/managedoctors")}}>Manage Doctors</button>
                 </div>
                 
             </div>
         </div>
         <div className="admindash-router">
         <div className="router-con-main">
-            <div className="router-con-active">
+            <div className="router-con-active" onClick={()=>{navigate("/admindashboard")}}>
             <img src="https://cdn-icons-png.flaticon.com/128/8899/8899687.png" alt="home icons" />
 
             </div>
@@ -43,12 +45,12 @@ function AdminDash() {
                 <img src="https://cdn-icons-png.flaticon.com/128/17385/17385021.png" alt="Schedule icons" />
                 
             </div>
-            <div className="router-con">
-                <img src="https://cdn-icons-png.flaticon.com/128/3952/3952988.png" alt="Patients icons" />
+            <div className="router-con" onClick={()=>{navigate("/managedoctors")}}>
+                <img src="https://cdn-icons-png.flaticon.com/128/3952/3952988.png" alt="Doctors icons" />
                 
             </div>
             <div className="router-con">
-                <img src="https://cdn-icons-png.flaticon.com/128/3953/3953226.png" alt="Schedule icons" />
+                <img src="https://cdn-icons-png.flaticon.com/128/3953/3953226.png" alt="Settings icons" />
                 
             </div>
         </div>

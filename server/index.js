@@ -8,6 +8,7 @@ require('dotenv').config()
 const port=process.env.PORT
 
 const Login=require("./routes/auths/auth"); 
+const ManageDoctor=require("./routes/doctors/ManageDoctors");
 
 app.use(cors());
 app.use(express.json());
@@ -26,7 +27,9 @@ const ConnectAtlas=async()=>{
 }
 ConnectAtlas()
 
+app.use("/upload", express.static("upload"));
 app.use("/",Login);
+app.use("/",ManageDoctor);
 
 
 app.listen(port,()=>{

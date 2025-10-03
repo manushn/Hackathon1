@@ -6,6 +6,9 @@ import ProtectedRoute from "./components/protection/ProtectedRoute";
 const HomePage=lazy(()=>import("./Pages/Home"));
 const LoginPage=lazy(()=>import("./Pages/Login"))
 const AdminPage=lazy(()=>import("./Pages/admin/AdminDash"))
+const AdminDoctorManage=lazy(()=>import("./Pages/admin/ManageDoctors"));
+const AdminDoctorAdding=lazy(()=>import("./Pages/admin/DoctorAdding"));
+
 
 function App() {
   return (
@@ -20,6 +23,21 @@ function App() {
           //</ProtectedRoute>
 
         }/>
+
+        <Route path='/managedoctors' element={
+          //<ProtectedRoute>
+            <AdminDoctorManage/>
+          //</ProtectedRoute>
+
+        }/>
+
+        <Route path='/adddoctors' element={
+          //<ProtectedRoute>
+            <AdminDoctorAdding/>
+          //</ProtectedRoute>
+
+        }/>
+
       </Routes>
       
     </Router>

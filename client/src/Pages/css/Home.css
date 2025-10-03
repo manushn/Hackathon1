@@ -169,4 +169,16 @@
     .home-body1-left{
         padding-left: 10px;
     }
+
+    .head-logo img{
+      width: 40px;
+      height: 50px;
+    }
+    .head-logo h2{
+      padding-left: 10px;
+      font-size: 20px;
+    }
+    .head-btn button{
+      font-size: 10px;
+    }
 }

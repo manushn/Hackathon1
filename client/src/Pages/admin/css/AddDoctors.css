@@ -1,0 +1,110 @@
+.doctor-add-body {
+  min-height: 600px;
+  background-color: rgb(248, 248, 248);
+  min-height:800px ;
+
+}
+.doctor-add-body-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 10%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.doctor-add-body-head button {
+  background-color: rgb(40, 120, 200);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  padding: 8px 16px;
+}
+.doctor-add-body-head button:hover {
+  transform: translateY(-4px);
+}
+.doctor-add-body h2 {
+  margin-left: 10px;
+}
+
+.doctor-add-form {
+  margin-left: 10%;
+  margin-right: 10%;
+  border: 1px solid rgb(40, 120, 200);
+  border-radius: 5px;
+  padding: 20px;
+  background: #fff;
+}
+
+.doctor-add-form-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
+  border: 1px solid rgb(198, 198, 198);
+  padding: 30px;
+  border-radius: 5px;
+  width: 180px;
+
+}
+.doctor-add-form-top img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10%;
+  object-fit: cover;
+  border: 1px solid rgb(40, 120, 200);
+}
+
+.doctor-add-form-top input {
+  cursor: pointer;
+}
+
+.doctor-add-form-bottom {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.dadd-form-con {
+  display: flex;
+  flex-direction: column;
+}
+
+.dadd-form-con input {
+  width: 80%;
+  padding: 8px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px dotted rgb(40, 120, 200);
+}
+.dadd-form-con input:focus{
+    outline: none;
+}
+
+.dadd-form-btn {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.dadd-form-btn button {
+  padding: 10px 20px;
+  background: rgb(40, 120, 200);
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dadd-form-btn button:hover {
+  background: rgb(30, 100, 170);
+}
+
+@media (max-width: 700px){
+    .doctor-add-body {
+        height: 150vh;
+    }
+}

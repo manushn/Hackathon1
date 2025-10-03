@@ -1,0 +1,157 @@
+.manage-doctors-body{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(248, 248, 248);
+    min-height: 800px;
+}
+.manage-doctor-head{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 4%;
+    margin-top: 20px;
+    margin-right: 5%;
+}
+.manage-doctor-head input{
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    background-color: white;
+    transition: 0.3s ease;
+
+}
+.manage-doctor-head input:focus{
+    outline: none;
+}
+.manage-doctor-head input:hover{
+    transform: translateY(-4px);
+}
+.manage-doctor-head button{
+    background-color: rgb(40, 120, 200);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.manage-doctor-head button:hover{
+    transform: translateY(-4px);
+}   
+
+.manage-doctor-view-table{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+.manage-doctor-view-table-con table{
+    border-collapse: collapse;
+    width: 90%;
+    background-color: white;
+}
+.manage-doctor-view-table-con th, .manage-doctor-view-table-con td{
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+.manage-doctor-view-table-con th{
+    background-color: rgb(40, 120, 200);
+    color: white;
+    width: 200px;
+    text-align: center;
+}
+.manage-doctor-view-table-con td{
+    text-align: center;
+}   
+.manage-doctor-view-table-con tr:hover{
+    background-color: #f5f5f5;
+}
+.manage-doctor-view-table-con img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.manage-doctor-view-table-con button:first-child{
+    background-color: rgb(220, 53, 69);
+    color: white;
+    border: none;
+    border-radius: 5px;     
+    cursor: pointer;
+    transition: 0.3s ease;
+    padding: 5px 10px;
+
+}
+.manage-doctor-view-table-con button:last-child{
+    background-color: rgb(40, 120, 200);
+    color: white;
+    border: none;
+    border-radius: 5px;     
+    cursor: pointer;
+    transition: 0.3s ease;
+    padding: 5px 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.manage-doctor-view-table-con button:hover{
+    transform: translateY(-2px);
+}
+
+.doctor-popup-main{
+    display: flex;
+    position: absolute;
+    top: 0;
+    margin-top: 100px;
+    justify-content: center;
+    align-items:center;
+    width: 100%;
+}
+.doctor-popup-con{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid rgb(198, 198, 198);
+    border-radius: 10px;
+}
+.doctor-popup-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(221, 221, 221);
+    padding-bottom: 5px;
+}
+.doctor-popup-head button{
+    background-color: rgb(220, 53, 69);
+    color: white;
+    border: none;
+    border-radius: 5px;     
+    cursor: pointer;
+    transition: 0.3s ease;
+    padding: 5px 10px;
+}
+.doctor-popup-head button:hover{
+    transform: translateY(-2px);
+}
+
+.doctor-popup-body-top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+.doctor-popup-body-top img{
+    width: 100px;
+
+}
+
+.doctor-popup-body-bottom{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 10px;
+}
+
+

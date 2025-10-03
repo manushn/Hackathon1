@@ -7,6 +7,10 @@ const DoctorSchema = new mongoose.Schema({
     unique: true,
     trim: true
   },
+  profile_url:{
+    type:String,
+    default:"/upload/defauladoc.png"
+  },
   prefix: {
     type: String,
     default: "Dr"
@@ -20,11 +24,6 @@ const DoctorSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true
-  },
-  age: {
-    type: Number,
-    required: true,
-    min: 25 
   },
   city: {
     type: String,
@@ -45,7 +44,7 @@ const DoctorSchema = new mongoose.Schema({
     trim: true
   },
   experience: {
-    type: Number,
+    type: String,
     required: true,
     min: 0
   },
