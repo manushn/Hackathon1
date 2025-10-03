@@ -33,23 +33,26 @@ function AdminDash() {
             </div>
         </div>
         <div className="admindash-router">
+        <div className="router-con-main">
             <div className="router-con-active">
-                <img src="https://cdn-icons-png.flaticon.com/128/8899/8899687.png" alt="home icons" />
-                <span>Dashboard</span>
+            <img src="https://cdn-icons-png.flaticon.com/128/8899/8899687.png" alt="home icons" />
+
             </div>
             
             <div className="router-con">
                 <img src="https://cdn-icons-png.flaticon.com/128/17385/17385021.png" alt="Schedule icons" />
-                <span>Appoinments</span>
+                
             </div>
             <div className="router-con">
                 <img src="https://cdn-icons-png.flaticon.com/128/3952/3952988.png" alt="Patients icons" />
-                <span>Doctors</span>
+                
             </div>
             <div className="router-con">
                 <img src="https://cdn-icons-png.flaticon.com/128/3953/3953226.png" alt="Schedule icons" />
-                <span>Settings</span>
+                
             </div>
+        </div>
+            
         </div>
     </div>
   )

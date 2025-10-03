@@ -81,67 +81,72 @@
 
 .admindash-router{
     display: flex;
+    width: 100%;
+    justify-content: center;
     position: absolute;
     position: fixed;
     top: 0;
-    bottom: 0;
-    left: 0;
-    margin-top: 90vh;
-    justify-content: space-evenly;
-    width: 100%;
-    background-color: rgb(50, 139, 228);
-    padding:12px;
-
-    border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-    
-
+    margin-top: 730px;
 }
-.router-con-active{
+
+.router-con-main{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    color: black;
-    cursor: pointer;
-    background-color:rgb(248, 248, 248) ;
+    width: 50%;
+    background-color: rgb(40, 120, 200);
+    justify-content: space-evenly;
     border-radius: 10px;
-    transform: translateY(-18px);
 
 }
-.router-con-active img{
-    width: 30px;
+
+.router-con-active{
+    background-color: rgb(248, 248, 248);
+    margin:8px;
+    transform: translateY(-10px);
+    cursor: pointer;
+    border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
 }
 .router-con{
-    display: flex;
-    cursor: pointer;
-    justify-content: center;
-    padding: 20px;
     background-color: white;
-    align-items: center;
+    margin: 8px;
     border-radius: 10px;
+    transition: 0.3s ease;
 }
 .router-con:hover{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    color: black;
+    background-color: rgb(248, 248, 248);
+    margin:5px;
+    transform: translateY(-10px);
     cursor: pointer;
-    background-color:rgb(248, 248, 248) ;
-    border-radius: 10px;
-    transform: translateY(-18px);
+    border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
-.router-con img{
-    width: 30px;
+
+
+.router-con img,
+.router-con-active img{
+    width: 25px;
+    padding: 6px;
+
+
 }
 
 @media (max-width: 700px){
+    .admindash-body-actions{
+        margin-top: 10px;
+    }
     .router-con span{
         display: none;
     }
     .router-con-active span{
         display: none;
+    }
+    .admindash-router{
+        margin-top: 640px;
+        position: fixed;
+    }
+    .router-con-main{
+        width: 90%;
     }
 }
 
