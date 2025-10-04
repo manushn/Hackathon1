@@ -10,6 +10,9 @@ const port=process.env.PORT
 const Login=require("./routes/auths/auth"); 
 const ManageDoctor=require("./routes/doctors/ManageDoctors");
 
+const DoctorDetails=require("./routes/doctors/DoctorDetails");
+const Makeappoinment=require("./routes/Appoinment/Makeappoinment");
+
 app.use(cors());
 app.use(express.json());
 
@@ -30,6 +33,9 @@ ConnectAtlas()
 app.use("/upload", express.static("upload"));
 app.use("/",Login);
 app.use("/",ManageDoctor);
+app.use("/",DoctorDetails);
+app.use("/",Makeappoinment);
+
 
 
 app.listen(port,()=>{

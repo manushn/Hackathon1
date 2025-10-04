@@ -73,12 +73,12 @@ router.delete("/deletedoctor/:id", async (req, res) => {
     const doctor = await Doctor.findById(req.params.id);
 
     if (!doctor) {
-      return res.status(203).json({ emessage: "Doctor not found" });
+      return res.status(400).json({ emessage: "Doctor not found" });
     }
 
     
     if (doctor.profile_url && doctor.profile_url !== "/upload/defauladoc.png") {
-      const imagePath = path.join(__dirname, "..", doctor.profile_url); 
+      const imagePath = path.join(__dirname, "..", doctor.profile_url.replace(/^\/+/, "")); 
       fs.unlink(imagePath, (err) => {
         if (err) {
           console.error("Failed to delete image:", err.message);
@@ -124,5 +124,25 @@ router.get("/getdoctor/:id", async (req, res) => {
   }
 });
 
+router.get("/searchdoctors", async (req, res) => {
+  try {
+    const query = req.query.query;
+    if(!query || query.trim()===""){
+      return res.status(400).json({doctors:[]});
+    }
+  
+    const doctors = await Doctor.find({
+      $or: [
+          { first_name: { $type: "string", $regex: query, $options: "i" } },
+          { last_name: { $type: "string", $regex: query, $options: "i" } },
+          { specialization: { $type: "string", $regex: query, $options: "i" } }
+
+      ]
+    },"doc_id prefix first_name last_name specialization profile_url");
+    res.status(200).json({doctors:doctors});
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
 
 module.exports = router;

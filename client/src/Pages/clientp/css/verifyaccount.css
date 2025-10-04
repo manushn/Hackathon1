@@ -1,0 +1,98 @@
+.verify-account-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+.verify-account-form-main h1{
+    text-align: center;
+}
+.verify-account-form-main p{
+    text-align: center;
+    font-size: 13px;
+}
+.verify-form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    border: 1px solid grey;
+    border-radius: 5px;
+
+}
+.email-send{
+    
+    border: none;
+    font-size: 16px;
+    border-bottom: 1px solid grey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.email-send input{
+    border: none;
+
+}
+.email-send input:focus{
+    outline: none;
+}
+.email-send button{
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 10px;
+    height: 30px;
+    width: 100px;
+    margin-right: 3px;
+}
+.verify-details{
+    border: none;
+    font-size: 16px;
+    border-bottom: 1px solid grey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.verify-details button{
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 10px;
+    height: 30px;
+    width: 100px;
+    margin-right: 3px;
+    text-align: center;
+}
+.verify-form input{
+    border: none;
+    padding: 10px;
+    margin: 2px;
+    width: 100%;
+}
+.verify-form input:focus{
+    outline: none;
+}
+.verify-submit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+.verify-submit button{
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.verify-submit button:hover{
+    background-color: #115293;
+}

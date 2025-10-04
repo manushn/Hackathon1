@@ -20,7 +20,7 @@ function Home() {
         <div className="home-body1">
           <div className="home-body1-left">
             <h1>Find Your Doctor And make an appoinment.</h1>
-            <div className="appoinment-btn">
+            <div className="appoinment-btn" onClick={()=>{navigate("/verifyaccount")}}>
                 <h3>Book an appoinment </h3>
                 <h2>{"->"}</h2>
             </div>
@@ -36,12 +36,12 @@ function Home() {
             <h2>Browse By Specialties</h2>
           </div>
           <div className="home-body2-bottom">
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","General");navigate("/verifyaccount")}}>
               <img src="images/general.webp" alt="general" />
               <p>General</p>
             </div>
 
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Dermatology");navigate("/verifyaccount")}}>
               <img src="images/dermatology.webp" alt="general" />
               <p>Dermatology</p>
             </div>

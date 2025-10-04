@@ -60,11 +60,36 @@ function ManageDoctors() {
             console.log(err);
         }finally{setIsloading(false)} 
     };
+
+    const HandleDoctorSearch=async()=>{
+        if(Isloading) return;
+        setIsloading(true);
+        try{
+            if(searchBox.trim()===""){
+                fetchDoctors();
+                return;
+            }
+            const response=await axios.get(`${import.meta.env.VITE_BACKEND_URL}/searchdoctors?query=${searchBox}`);
+            if(response.data.doctors){
+                setDoctors(response.data.doctors);
+            }else{
+                setDoctors([]);
+            }
+        }catch(err){
+            console.log(err);
+        }finally{setIsloading(false)}
+    };
+    
+    useEffect(()=>{
+        const delayDebounceFn = setTimeout(() => {
+            HandleDoctorSearch();
+          }, 800)       
+        return () => clearTimeout(delayDebounceFn)
+    },[searchBox])  
       
 
 useEffect(()=>{
     fetchDoctors();
-    console.log(doctors);
 },[])
 
 
@@ -79,8 +104,8 @@ useEffect(()=>{
                 <input 
                     type="text"
                     value={searchBox}
-                    onChange={(e)=>{setsearchBox(e.target.value())}}
-                    placeholder='Search'
+                    onChange={(e)=>{setsearchBox(e.target.value)}}
+                    placeholder='Search Doctors'
                 />
 
                 <button onClick={()=>{navigate("/adddoctors")}}>Add Doctors</button>

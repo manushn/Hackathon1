@@ -10,6 +10,9 @@ require('dotenv').config()
 const doctorSchema = require("../../models/DoctorSchema");
 const DoctorSchema = require("../../models/DoctorSchema");
 
+const patientSchema = require("../../models/PatientSchema");
+const PatientSchema = require("../../models/PatientSchema");
+
 const otpStore = {};
 
 const transporter = nodemailer.createTransport({
@@ -20,12 +23,9 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-router.post("/generate-otp", async (req, res) => {
+router.post("/patient-otp", async (req, res) => {
   const { email } = req.body;
   if (!email) return res.status(400).json({ emessage: "Email is required" });
-
-  const user = await DoctorSchema.findOne({ email: email.toLowerCase().trim() });
-  if (!user) return res.status(404).json({ emessage: "User not found" });
 
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
   const expiresAt = Date.now() + 5 * 60 * 1000; 
@@ -40,10 +40,100 @@ router.post("/generate-otp", async (req, res) => {
       text: `Your One Time Password For MCare is : ${otp}. Don't share your OTP with any one. If it is not done by you please feel free to contact us. We are always for you☺️.`,
     });
 
-    return res.status(200).json({ success: true, emessage: "OTP sent to your email" });
+    return res.status(200).json({ success: true});
   } catch (err) {
     console.error("Email error:", err);
     return res.status(500).json({ emessage: "Error sending email" });
+  }
+});
+
+router.post("/verify-otp", async (req, res) => {
+
+  try{
+
+    const { email, otp } = req.body;
+
+  if (!email || !otp) {
+    return res.status(400).json({ emessage: "Email and OTP are required" });
+  }
+
+  const sOtp = otpStore[email];
+  if (!sOtp) {
+    return res.status(400).json({ emessage: "No OTP found for this email." });
+  }
+
+  if (Date.now() > sOtp.expiresAt) {
+    delete otpStore[email];
+    return res.status(203).json({ emessage: "OTP expired. Please use Resend Option." });
+  }
+
+  
+  if (sOtp.otp !== otp) {
+    return res.status(203).json({ emessage: "Invalid OTP" });
+  }
+  
+  delete otpStore[email];
+
+  const user = await PatientSchema.findOne({ email: email.trim() });
+  if (!user) {
+    return res.status(203).json({ patient:[] });
+  } 
+  
+  return res.status(200).json({ patient:user});
+
+  }catch(err){
+    console.log("Error in verify otp:",err)
+    return res.status(500).json({ emessage: "Server error in verifying otp " });
+  }
+  
+});
+
+router.post("/register-patient", async (req, res) => {
+  try {
+    const { patient_name, age, email, contact_no, address } = req.body;
+
+    if (!patient_name || !age || !email || !contact_no || !address) {
+      return res.status(203).json({ emessage: "All fields are required" });
+    }
+
+   
+    const Isemail = await PatientSchema.findOne({ email });
+    if (Isemail) {
+      token = jwt.sign(
+      { id: Isemail._id, email: Isemail.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "12hr" }
+    );
+
+    const encryptedToken = CryptoJS.AES.encrypt(token, process.env.CRYPTO_KEY).toString();  
+
+
+    return res.status(201).json({ token:encryptedToken, success:true, role:"patient",username:email });
+    }
+
+
+    const newPatient = new PatientSchema({
+      patient_name,
+      age,
+      email,
+      contact_no,
+      address,
+    });
+
+    await newPatient.save();
+
+    token = jwt.sign(
+      { id: newPatient._id, email: newPatient.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "12hr" }
+    );
+
+    const encryptedToken = CryptoJS.AES.encrypt(token, process.env.CRYPTO_KEY).toString();  
+
+
+    return res.status(201).json({ token:encryptedToken, success:true, role:"patient" ,username:email});
+  } catch (error) {
+    return res.status(500).json({ message: "Server error", error: error.message });
   }
 });
 

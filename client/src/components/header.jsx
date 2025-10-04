@@ -12,7 +12,11 @@ function header() {
             </div>
             {sessionStorage.getItem("Token")?(
                 <div className="head-btn">
-                    <button onClick={()=>{sessionStorage.removeItem("Token");navigate("/login")}}>Logout</button>
+                    <button onClick={()=>{
+                        sessionStorage.removeItem("Token");
+                        sessionStorage.removeItem("Role");
+                        sessionStorage.removeItem("Username");
+                        navigate("/")}}>Logout</button>
                 </div>
             ):(
                 <div className="head-btn">
