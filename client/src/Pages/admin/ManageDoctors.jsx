@@ -127,7 +127,7 @@ useEffect(()=>{
                             {doctors.map((doc)=>(
                                 <tr key={doc._id}>
                                     <td>
-                                        <img src={`${import.meta.env.VITE_BACKEND_URL}${doc.profile_url}`}alt="Doctor Profile"/>
+                                        <img src={doc.profile_url}alt="Doctor Profile"/>
                                     </td>
                                     <td>{`Dr. ${doc.first_name} ${doc.last_name}`}</td>
                                     <td>{doc.specialization}</td>
@@ -159,7 +159,7 @@ useEffect(()=>{
                     </div>
                     <div className="doctor-popup-body">
                         <div className="doctor-popup-body-top">
-                            <img src={`${import.meta.env.VITE_BACKEND_URL}${selectedDoctor.profile_url}`} alt="Doctor Profile"/>
+                            <img src={selectedDoctor.profile_url} alt="Doctor Profile"/>
                         </div>
                         <div className="doctor-popup-body-bottom">
                             <p><strong>Name:</strong> {`Dr. ${selectedDoctor.first_name} ${selectedDoctor.last_name}`}</p>

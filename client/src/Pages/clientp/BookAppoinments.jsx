@@ -6,7 +6,7 @@ import Header from '../../components/header'
 import { useState } from 'react'
 import { useEffect } from 'react';
 import { Calendar, CheckCircle } from 'lucide-react';
-import Footers from '../../components/Footers';
+import Footers from '../../components/footers';
 
 
 
@@ -275,7 +275,7 @@ const searchDoctors=async()=>{
                         {doctors.map((doc)=>(
                             <div className="doc-card" key={doc._id}>
                                 <div className="doc-card-img">
-                                    <img src={`${import.meta.env.VITE_BACKEND_URL}${doc.profile_url}`} alt="doctor" />
+                                    <img src={doc.profile_url} alt="doctor" />
                                 </div>
                                 <div className="doc-card-con">
                                     <h3>{`Dr. ${doc.first_name} ${doc.last_name}`}</h3>

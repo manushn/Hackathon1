@@ -1,24 +1,23 @@
 const express = require("express");
 const router = express.Router();
-const multer = require("multer");
-const path = require("path");
-const fs = require("fs");
+
 const Doctor = require("../../models/DoctorSchema"); 
 
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "upload/"); 
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname)); 
-  }
-});
-
-const upload = multer({ storage });
+const multer = require("multer");
+const cloudinary=require("../../config/cloudinary")
+const upload = require("../../config/multerConfig");
 
 
 router.post("/adddoctor", upload.single("profile"), async (req, res) => {
+  cloudinary.uploader.upload(req.file.path, async function (err, result){
+    if(err) {
+      console.log(err);
+      return res.status(500).json({
+        success: false,
+        message: "Error"
+      })
+    }
+
   try {
     const {first_name,last_name,city,email,phone_no,experience,degree,specialization} = req.body;
 
@@ -55,7 +54,8 @@ router.post("/adddoctor", upload.single("profile"), async (req, res) => {
       degree,
       specialization,
       role: "doctor",
-      profile_url: req.file ? `/upload/${req.file.filename}` : "/upload/defauladoc.png"
+      profile_url: result.secure_url||"https://res.cloudinary.com/dxpawc7lh/image/upload/v1759649101/defauladoc_edby2z.png",
+      cloudinary_id: result.public_id||"",
     });
 
     await newDoctor.save();
@@ -64,6 +64,7 @@ router.post("/adddoctor", upload.single("profile"), async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: "Server error", error: error.message });
   }
+  })
 });
 
 
@@ -77,15 +78,9 @@ router.delete("/deletedoctor/:id", async (req, res) => {
     }
 
     
-    if (doctor.profile_url && doctor.profile_url !== "/upload/defauladoc.png") {
-      const imagePath = path.join(__dirname, "../..", doctor.profile_url.replace(/^\/+/, "")); 
-      fs.unlink(imagePath, (err) => {
-        if (err) {
-          console.error("Failed to delete image:", err.message);
-        } else {
-          console.log("Deleted doctor image:", imagePath);
-        }
-      });
+     if (doctor.cloudinary_id) {
+      await cloudinary.uploader.destroy(doctor.cloudinary_id);
+      console.log("Deleted Cloudinary image:", doctor.cloudinary_id);
     }
 
     
