@@ -6,7 +6,7 @@ import axios from 'axios'
 
 import "./css/AdminDash.css"
 import "./css/ManageDoctor.css"
-import Footers from "../../components/Footers"
+import Footers from "../../components/Footers.jsx"
 
 function ManageDoctors() {
     const navigate=useNavigate();

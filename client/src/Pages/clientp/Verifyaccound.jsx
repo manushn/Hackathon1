@@ -8,7 +8,7 @@ import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-import Footers from '../../components/footers';
+import Footers from '../../components/Footers';
 
 function Verifyaccount() {
     const Token =sessionStorage.getItem("Token");

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/header";
 import "./css/AdminDash.css";
 import "./css/AddDoctors.css";
-import Footers from "../../components/footers";
+import Footers from "../../components/Footers";
 
 
 function DoctorAdding() {
