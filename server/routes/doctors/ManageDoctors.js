@@ -14,7 +14,7 @@ router.post("/adddoctor", upload.single("profile"), async (req, res) => {
       console.log(err);
       return res.status(500).json({
         success: false,
-        message: "Error"
+        message: err
       })
     }
 
