@@ -6,7 +6,7 @@ import Header from '../../components/header'
 import { useState } from 'react'
 import { useEffect } from 'react';
 import { Calendar, CheckCircle } from 'lucide-react';
-import Footers from '../../components/footers';
+import Footers from "../../components/Footers";
 
 
 
