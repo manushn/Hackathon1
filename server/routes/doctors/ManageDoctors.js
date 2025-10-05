@@ -78,7 +78,7 @@ router.delete("/deletedoctor/:id", async (req, res) => {
 
     
     if (doctor.profile_url && doctor.profile_url !== "/upload/defauladoc.png") {
-      const imagePath = path.join(__dirname, "..", doctor.profile_url.replace(/^\/+/, "")); 
+      const imagePath = path.join(__dirname, "../..", doctor.profile_url.replace(/^\/+/, "")); 
       fs.unlink(imagePath, (err) => {
         if (err) {
           console.error("Failed to delete image:", err.message);

@@ -37,7 +37,7 @@ router.post("/patient-otp", async (req, res) => {
       from: process.env.GMAIL_USER,
       to: email,
       subject: "Your One Time Password For MCare.",
-      text: `Your One Time Password For MCare is : ${otp}. Don't share your OTP with any one. If it is not done by you please feel free to contact us. We are always for you☺️.`,
+      text: `Your One Time Password For MCare is : ${otp}.\n Don't share your OTP with any one.\nIf it is not done by you please feel free to contact us. We are always for you☺️.`,
     });
 
     return res.status(200).json({ success: true});

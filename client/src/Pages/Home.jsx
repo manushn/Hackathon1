@@ -13,7 +13,7 @@ function Home() {
                 <h2>MCare</h2>
             </div>
             <div className="head-btn">
-              <button onClick={()=>{navigate("/admindashboard")}}>Login</button>
+              <button onClick={()=>{navigate("/login")}}>Login</button>
             </div>
         </div>
 
@@ -46,93 +46,93 @@ function Home() {
               <p>Dermatology</p>
             </div>
 
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","ENT");navigate("/verifyaccount")}}>
               <img src="images/ent.webp" alt="general" />
               <p>ENT</p>
             </div>
 
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Gynacology");navigate("/verifyaccount")}}>
               <img src="images/gynacology.webp" alt="general" />
               <p>Gynacology</p>
             </div>
 
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Cardiology");navigate("/verifyaccount")}}>
               <img src="images/cardiology.webp" alt="general" />
               <p>Cardiology</p>
             </div>
             
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Dentist");navigate("/verifyaccount")}}>
               <img src="images/dentist.webp" alt="general" />
               <p>Dentist</p>
             </div>
             
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Neurology");navigate("/verifyaccount")}}>
               <img src="images/neurology.webp" alt="general" />
               <p>Neurology</p>
             </div>
             
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Diabetology");navigate("/verifyaccount")}}>
               <img src="images/disbetics.webp" alt="general" />
               <p>Diabetology</p>
             </div>
             
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Endocrinology");navigate("/verifyaccount")}}>
               <img src="images/endrocrinilogy.webp" alt="general" />
               <p>Endocrinology</p>
             </div>
             
             
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Gastroenterology");navigate("/verifyaccount")}}>
               <img src="images/gastero.webp" alt="general" />
               <p>Gastroenterology</p>
             </div>
             
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Infectious Disease");navigate("/verifyaccount")}}>
               <img src="images/infectionusdisease.webp" alt="general" />
               <p>Infectious Disease</p>
             </div>
 
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","General & Laproscopic");navigate("/verifyaccount")}}>
               <img src="images/lapproscopic.webp" alt="general" />
               <p>General & Laproscopic</p>
             </div>
             
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Medical Oncology");navigate("/verifyaccount")}}>
               <img src="images/mediclonology.webp" alt="general" />
               <p>MedicalnOnology</p>
             </div>
 
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Nephrology");navigate("/verifyaccount")}}>
               <img src="images/neprology.webp" alt="general" />
               <p>Nephrology</p>
             </div>
 
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Ophthalmology");navigate("/verifyaccount")}}>
               <img src="images/ophthalmology.webp" alt="general" />
               <p>Ophthalmology</p>
             </div>
 
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Orthopaedics");navigate("/verifyaccount")}}>
               <img src="images/ortho.webp" alt="general" />
               <p>Orthopaedics</p>
             </div>
 
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Psychiatry");navigate("/verifyaccount")}}>
               <img src="images/physictrics.webp" alt="general" />
               <p>Psychiatry</p>
             </div>
 
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Paediatrics");navigate("/verifyaccount")}}>
               <img src="images/paediatrics.webp" alt="general" />
               <p>Paediatrics</p>
             </div>
 
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Psychology");navigate("/verifyaccount")}}>
               <img src="images/psychology.webp" alt="general" />
               <p>Psychology</p>
             </div>
 
-            <div className="home-body2-imgf">
+            <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Pulmonology/ Resipiratory");navigate("/verifyaccount")}}>
               <img src="images/pulmonology.webp" alt="general" />
               <p>Pulmonology/ Resipiratory</p>
             </div>

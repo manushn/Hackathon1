@@ -6,7 +6,7 @@ import Header from '../../components/header'
 import { useState } from 'react'
 import { useEffect } from 'react';
 import { Calendar, CheckCircle } from 'lucide-react';
-import { format } from 'mysql'
+import Footers from '../../components/footers';
 
 
 
@@ -17,7 +17,7 @@ const [doctors,setDoctors]=useState([]);
 
 const [SelectedDoctorId,setSelectedDoctorId]=useState(null);
 const [Ispopup,setIspopup]=useState(false);
-
+const [loadingBooking,setLoadingBooking]=useState(false);
 
 const [selectedDate, setSelectedDate] = useState(null);
 const [availableDays, setAvailableDays] = useState([]);
@@ -27,10 +27,18 @@ const [selectedSlot, setSelectedSlot] = useState(null);
 const generate30Days = () => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
+    const now = new Date();
     const days = [];
+
+      const startDate = new Date(today);
+      if (now.getHours() >= 19) {
+        startDate.setDate(startDate.getDate() + 1);
+      }
+
+
     for (let i = 0; i < 30; i++) {
-      const date = new Date(today);
-      date.setDate(today.getDate() + i);
+      const date = new Date(startDate);
+      date.setDate(startDate.getDate() + i);
       days.push(date);
     }
     return days;
@@ -112,14 +120,15 @@ const searchDoctors=async()=>{
         setSelectedSlot(null);
     };
 
-    const handleConfirmBooking = () => {
+    const handleConfirmBooking = async() => {
         if (selectedDate && selectedSlot) {
-            
+            if(loadingBooking) return;
+            setLoadingBooking(true);
             const date = new Date(selectedDate);
-            const formatted = date.toISOString().split("T")[0];
+            const formatted = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`
 
             try{
-                const response=axios.post(`${import.meta.env.VITE_BACKEND_URL}/book-appointment`,{
+                const response= await axios.post(`${import.meta.env.VITE_BACKEND_URL}/book-appointment`,{
                     doc_id: SelectedDoctorId,
                     date: formatted,
                     slot: selectedSlot,
@@ -130,7 +139,7 @@ const searchDoctors=async()=>{
                     alert(response.data.emessage)
                 }
 
-                if(response.data.success==true){
+                if(response.data.success){
                     alert(`Appointment booked for ${formatDate(selectedDate)} at ${selectedSlot}`);
                     setIspopup(false);
                     setSelectedDoctorId(null);
@@ -140,6 +149,8 @@ const searchDoctors=async()=>{
 
                 }catch(err){
                     console.log("Error in booking appointment:",err);
+                }finally{
+                    setLoadingBooking(false);
                 }
             
         } else {
@@ -151,6 +162,27 @@ const searchDoctors=async()=>{
         "10:00 AM - 01:00 PM",
         "04:00 PM - 08:00 PM"
     ];
+    let filteredSlots = [...timeSlots];
+
+    if (selectedDate) {
+        const now = new Date();
+        const isSelectedToday =
+        selectedDate.getDate() === now.getDate() &&
+        selectedDate.getMonth() === now.getMonth() &&
+        selectedDate.getFullYear() === now.getFullYear();
+
+        if (isSelectedToday) {
+            const currentHour = now.getHours();
+
+            if (currentHour >= 12) {
+                filteredSlots = filteredSlots.filter(slot => slot !== "10:00 AM - 01:00 PM");
+            }
+
+            if (currentHour >= 19) {
+                filteredSlots = [];
+            }
+            }
+        }
 
   return (
     <div className="bookappoinments-main">
@@ -382,7 +414,7 @@ const searchDoctors=async()=>{
                                             </p>
                                         </div>
 
-                                        {timeSlots.map((slot, index) => (
+                                        {filteredSlots.map((slot, index) => (
                                             <button
                                                 key={index}
                                                 onClick={() => setSelectedSlot(slot)}
@@ -444,7 +476,7 @@ const searchDoctors=async()=>{
                                                 }
                                             }}
                                         >
-                                            Confirm Booking
+                                            {loadingBooking ? 'Booking...' : 'Confirm Booking'}
                                         </button>
                                     </>
                                 ) : (
@@ -465,6 +497,7 @@ const searchDoctors=async()=>{
                 </div>
             )}
         </div>
+        <Footers/>
     </div>
   )
 }

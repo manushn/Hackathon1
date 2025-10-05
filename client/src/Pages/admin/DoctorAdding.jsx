@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/header";
 import "./css/AdminDash.css";
 import "./css/AddDoctors.css";
+import Footers from "../../components/footers";
+
 
 function DoctorAdding() {
   const [firstname, setFirstname] = useState("");
@@ -245,6 +247,7 @@ const handleAddDoctor = async () => {
           </div>
         </div>
       </div>
+      <Footers/>
     </div>
   );
 }

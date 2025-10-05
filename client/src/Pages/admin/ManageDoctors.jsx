@@ -6,7 +6,7 @@ import axios from 'axios'
 
 import "./css/AdminDash.css"
 import "./css/ManageDoctor.css"
-
+import  Footers from '../../components/footers'
 
 function ManageDoctors() {
     const navigate=useNavigate();
@@ -198,6 +198,7 @@ useEffect(()=>{
         </div>
             
         </div>
+        <Footers/>
     </div>
 
 

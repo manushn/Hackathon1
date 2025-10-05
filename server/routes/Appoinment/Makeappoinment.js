@@ -4,6 +4,20 @@ const Appointment = require("../../models/AppoinmentsSchema");
 const DoctorSchedule = require("../../models/DoctorScheduleSchema");
 const Doctor = require("../../models/DoctorSchema");
 const patient = require("../../models/PatientSchema");
+const nodemailer = require("nodemailer");
+
+require('dotenv').config()
+
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_PASS,
+  },
+});
+
+
 
 router.post("/book-appointment", async (req, res) => {
     try{
@@ -13,7 +27,8 @@ router.post("/book-appointment", async (req, res) => {
             return res.status(203).json({ emessage: "All fields are required" });
         }
 
-        let preschedule = await DoctorSchedule.findOne({ _id: doc_id.trim(), date: date.trim() });
+        let preschedule = await DoctorSchedule.findOne({ doctorId: doc_id.trim(), date: date.trim() });
+        console.log("preschedule:", preschedule);
         if (!preschedule) {
             const newDoctorSchedule = new DoctorSchedule({
                 doctorId: doc_id.trim(),
@@ -23,13 +38,14 @@ router.post("/book-appointment", async (req, res) => {
             });
             
             preschedule=await newDoctorSchedule.save();
+            preschedule = await DoctorSchedule.findOne({ doctorId: doc_id.trim(), date: date.trim() });
         }
         if(slot==="10:00 AM - 01:00 PM"){
             if(preschedule.slot1Remaining<=0){
                 return res.status(203).json({ emessage: "No slots available in this time range. Please choose another slot." });
             }
             preschedule.slot1Remaining -= 1;
-        }else if(slot==="02:00 PM - 06:00 PM"){
+        }else if(slot==="04:00 PM - 08:00 PM"){
             if(preschedule.slot2Remaining<=0){
                 return res.status(203).json({ emessage: "No slots available in this time range. Please choose another slot." });
             }
@@ -62,9 +78,19 @@ router.post("/book-appointment", async (req, res) => {
             address: patientData.address
         });
 
-        await newAppointment.save();
+        let savedappoinment=await newAppointment.save();
 
-        return res.status(201).json({ success: true, message: "Appointment booked successfully" });
+
+        
+        await transporter.sendMail({
+                from: process.env.GMAIL_USER,
+                to: patientData.email,
+                subject: "Your Appoinment is Scheduled Successfully ",
+                text:`Hello ${patientData.patient_name} 👋,\n\nYour appointment with Dr ${doctorData.first_name} ${doctorData.last_name} is scheduled on ${date} during ${slot}.\n\nYour Appoinment id is ${savedappoinment._id}\n\nPlease arrive 10 minutes early and bring any necessary documents.\n\nThank you for choosing our service!\n\nBest regards,\nMCare Team`,
+            });
+
+
+        return res.status(201).json({ success: true });
 
 
     }catch(err){

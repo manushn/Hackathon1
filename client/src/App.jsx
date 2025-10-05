@@ -22,23 +22,23 @@ function App() {
         <Route path="/login" element={<LoginPage/>}/>
 
         <Route path='/admindashboard' element={
-          //<ProtectedRoute>
+          <ProtectedRoute>
             <AdminPage/>
-          //</ProtectedRoute>
+          </ProtectedRoute>
 
         }/>
 
         <Route path='/managedoctors' element={
-          //<ProtectedRoute>
+          <ProtectedRoute>
             <AdminDoctorManage/>
-          //</ProtectedRoute>
+          </ProtectedRoute>
 
         }/>
 
         <Route path='/adddoctors' element={
-          //<ProtectedRoute>
+          <ProtectedRoute>
             <AdminDoctorAdding/>
-          //</ProtectedRoute>
+          </ProtectedRoute>
 
         }/>
 

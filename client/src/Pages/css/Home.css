@@ -81,6 +81,7 @@
 
 .home-body2{
     margin-left: 4%;
+    padding-bottom: 40px;
 
 }
 .home-body2-bottom {
@@ -105,7 +106,6 @@
   background-color: rgb(50, 139, 228); 
   color: #f9fafb;
   padding: 30px 20px 10px;
-  margin-top: 40px;
   font-family: sans-serif;
 }
 

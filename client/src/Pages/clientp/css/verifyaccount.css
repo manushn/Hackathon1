@@ -4,6 +4,9 @@
     align-items: center;
     margin-top: 30px;
 }
+.verify-account-form-main{
+    padding-bottom: 14%;
+}
 .verify-account-form-main h1{
     text-align: center;
 }

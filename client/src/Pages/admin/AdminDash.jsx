@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../../components/header'
 import { useNavigate } from 'react-router-dom'
 import "./css/AdminDash.css"
+import Footers from '../../components/Footers'
 
 function AdminDash() {
     const navigate=useNavigate()
@@ -56,6 +57,7 @@ function AdminDash() {
         </div>
             
         </div>
+        <Footers/>
     </div>
   )
 }
