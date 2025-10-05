@@ -13,15 +13,12 @@ const ManageDoctor=require("./routes/doctors/ManageDoctors");
 const DoctorDetails=require("./routes/doctors/DoctorDetails");
 const Makeappoinment=require("./routes/Appoinment/Makeappoinment");
 
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 const ConnectAtlas=async()=>{
     try{
-        await mongoose.connect(process.env.MONGODB_URL,{
-            useNewUrlParser:true,
-            useUnifiedTopology:true,
-        })
+        await mongoose.connect(process.env.MONGODB_URL)
         console.log("MongoDb Connected Successfully ")
     }catch(err){
         console.log("MongoDb Connection Failed!",err);
