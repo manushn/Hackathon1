@@ -6,7 +6,7 @@ import Header from '../../components/header'
 import { useState } from 'react'
 import { useEffect } from 'react';
 import { Calendar, CheckCircle } from 'lucide-react';
-import Footers from '../../components/footers';
+import Footers from '../../components/Footers';
 
 
 
@@ -213,7 +213,7 @@ const searchDoctors=async()=>{
                     <div className="speciality-card" onClick={()=>{setSearchBox("Pediatrics")}}>
                         <p>Pediatrics</p>
                     </div>
-                    <div className="speciality-card" onClick={()=>{setSearchBox("Dermatolofy")}}>
+                    <div className="speciality-card" onClick={()=>{setSearchBox("Dermatology")}}>
                         <p>Dermatology</p>
                     </div>
                     <div className="speciality-card"  onClick={()=>{setSearchBox("Gynacology")}}>
@@ -255,14 +255,11 @@ const searchDoctors=async()=>{
                     <div className="speciality-card" onClick={()=>{setSearchBox("Infectious Disease")}}>
                         <p>Infectious Disease</p>
                     </div>
-                    <div className="speciality-card" onClick={()=>{setSearchBox("Medicalnology")}}>
-                        <p>Medicalnology</p>
+                    <div className="speciality-card" onClick={()=>{setSearchBox("Medical onlogy")}}>
+                        <p>Medical Oncology</p>
                     </div>
                     <div className="speciality-card" onClick={()=>{setSearchBox("Nephrology")}}>
                         <p>Nephrology</p>
-                    </div>
-                    <div className="speciality-card" onClick={()=>{setSearchBox("Infectionusdisease")}}>
-                        <p>Infectionusdisease</p>
                     </div>
                     <div className="speciality-card" onClick={()=>{setSearchBox("Respiratory")}}>
                         <p>Respiratory</p>

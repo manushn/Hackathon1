@@ -99,7 +99,7 @@ function Home() {
             
             <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Medical Oncology");navigate("/verifyaccount")}}>
               <img src="images/mediclonology.webp" alt="general" />
-              <p>MedicalnOnology</p>
+              <p>Medical Oncology</p>
             </div>
 
             <div className="home-body2-imgf" onClick={()=>{sessionStorage.setItem("presearch","Nephrology");navigate("/verifyaccount")}}>

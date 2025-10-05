@@ -28,7 +28,7 @@ router.post("/book-appointment", async (req, res) => {
         }
 
         let preschedule = await DoctorSchedule.findOne({ doctorId: doc_id.trim(), date: date.trim() });
-        console.log("preschedule:", preschedule);
+        
         if (!preschedule) {
             const newDoctorSchedule = new DoctorSchedule({
                 doctorId: doc_id.trim(),
