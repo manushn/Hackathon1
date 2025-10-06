@@ -9,23 +9,22 @@ const upload = require("../../config/multerConfig");
 
 
 router.post("/adddoctor", upload.single("profile"), async (req, res) => {
-  cloudinary.uploader.upload(req.file.path, async function (err, result){
-    if(err) {
-      console.log(err);
-      return res.status(500).json({
-        success: false,
-        message: err
-      })
+  try {
+    let photo_url = "https://res.cloudinary.com/dxpawc7lh/image/upload/v1759649101/defauladoc_edby2z.png";
+    let photo_id = "";
+
+    if (req.file) {
+      const result = await cloudinary.uploader.upload(req.file.path);
+      photo_url = result.secure_url;
+      photo_id = result.public_id;
     }
 
-  try {
-    const {first_name,last_name,city,email,phone_no,experience,degree,specialization} = req.body;
+    const { first_name, last_name, city, email, phone_no, experience, degree, specialization } = req.body;
 
-    if (!first_name ||!last_name ||!city ||!email ||!phone_no ||!experience ||!degree ||!specialization) {
+    if (!first_name || !last_name || !city || !email || !phone_no || !experience || !degree || !specialization) {
       return res.status(203).json({ message: "All fields are required" });
     }
 
-   
     const Isemail = await Doctor.findOne({ email });
     if (Isemail) return res.status(203).json({ emessage: "Email already in use" });
 
@@ -34,16 +33,16 @@ router.post("/adddoctor", upload.single("profile"), async (req, res) => {
 
     const lastDoctor = await Doctor.findOne().sort({ doc_id: -1 }).exec();
 
-    let newDocId = "MCARE10001"; 
+    let newDocId = "MCARE10001";
     if (lastDoctor && lastDoctor.doc_id) {
-      const lastId = lastDoctor.doc_id; 
-      const numPart = parseInt(lastId.replace("MCARE", "")); 
+      const lastId = lastDoctor.doc_id;
+      const numPart = parseInt(lastId.replace("MCARE", ""));
       const nextNum = numPart + 1;
-      newDocId = "MCARE" + nextNum; 
+      newDocId = "MCARE" + nextNum;
     }
 
     const newDoctor = new Doctor({
-      doc_id:newDocId,
+      doc_id: newDocId,
       prefix: "Dr",
       first_name,
       last_name,
@@ -54,18 +53,19 @@ router.post("/adddoctor", upload.single("profile"), async (req, res) => {
       degree,
       specialization,
       role: "doctor",
-      profile_url: result.secure_url||"https://res.cloudinary.com/dxpawc7lh/image/upload/v1759649101/defauladoc_edby2z.png",
-      cloudinary_id: result.public_id||"",
+      profile_url: photo_url,
+      cloudinary_id: photo_id,
     });
 
     await newDoctor.save();
 
-    return res.status(201).json({ message: "Doctor added successfully", success:true});
+    return res.status(201).json({ message: "Doctor added successfully", success: true });
   } catch (error) {
+    console.error(error);
     return res.status(500).json({ message: "Server error", error: error.message });
   }
-  })
 });
+
 
 
 router.delete("/deletedoctor/:id", async (req, res) => {

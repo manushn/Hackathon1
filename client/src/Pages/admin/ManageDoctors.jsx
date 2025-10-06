@@ -163,6 +163,7 @@ useEffect(()=>{
                         </div>
                         <div className="doctor-popup-body-bottom">
                             <p><strong>Name:</strong> {`Dr. ${selectedDoctor.first_name} ${selectedDoctor.last_name}`}</p>
+                            <p><strong>Doc ID:</strong> {selectedDoctor.doc_id}</p>
                             <p><strong>Specialization:</strong> {selectedDoctor.specialization}</p>
                             <p><strong>Degree:</strong> {selectedDoctor.degree}</p>
                             <p><strong>Experience:</strong> {selectedDoctor.experience} years</p>
