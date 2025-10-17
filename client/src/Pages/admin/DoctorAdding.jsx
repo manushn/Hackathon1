@@ -20,6 +20,8 @@ function DoctorAdding() {
 
   const [Isloading, setIsloading] = useState(false);
 
+  const Token = sessionStorage.getItem("Token");
+
   const navigate = useNavigate();
 
    const handlePhoneNumber = (e) => {
@@ -66,9 +68,11 @@ const handleAddDoctor = async () => {
       formData,
       {
         headers: {
-          "Content-Type": "multipart/form-data",
-        },
+            Authorization: `Bearer ${Token}`,
+            "Content-Type": "multipart/form-data",
+              },
       }
+  
     );
 
     if (response.data.success) {

@@ -16,11 +16,19 @@ function ManageDoctors() {
     const [Isloading,setIsloading]=useState(false);
     const [Ispopup,setIspopup]=useState(false);
     const [selectedDoctor,setSelectedDoctor]=useState([]);
+    const Token=sessionStorage.getItem("Token")
 
     const fetchDoctors=async()=>{
         try{
             setIsloading(true);
-            const response=await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getdoctors`)
+            const response=await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getdoctors`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${Token}`,
+                        "Content-Type": "application/json",
+                    },
+                });
+
             if(response.data.doctors){
                 setDoctors(response.data.doctors);
             }else{
@@ -35,7 +43,14 @@ function ManageDoctors() {
         try{
             if(Isloading) return;
             setIsloading(true);
-            const response=await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/deletedoctor/${id}`);
+            const response=await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/deletedoctor/${id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${Token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
             if(response.data.success){
                 fetchDoctors();
             }
@@ -51,7 +66,14 @@ function ManageDoctors() {
         if(Isloading) return;   
         setIsloading(true);
         try{
-            const response=await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getdoctor/${id}`);
+            const response=await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getdoctor/${id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${Token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
             if(response.data.doctor){
                 setSelectedDoctor(response.data.doctor);
                 setIspopup(true);
@@ -69,7 +91,14 @@ function ManageDoctors() {
                 fetchDoctors();
                 return;
             }
-            const response=await axios.get(`${import.meta.env.VITE_BACKEND_URL}/searchdoctors?query=${searchBox}`);
+            const response=await axios.get(`${import.meta.env.VITE_BACKEND_URL}/searchdoctors?query=${searchBox}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${Token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
             if(response.data.doctors){
                 setDoctors(response.data.doctors);
             }else{
