@@ -6,6 +6,7 @@ const cors=require("cors");
 require('dotenv').config()
 
 const port=process.env.PORT||8080;
+const verify=require("./middleware/VerifyToken");
 
 const Login=require("./routes/auths/auth"); 
 const ManageDoctor=require("./routes/doctors/ManageDoctors");
@@ -29,9 +30,9 @@ ConnectAtlas()
 
 app.use("/upload", express.static("upload"));
 app.use("/",Login);
-app.use("/",ManageDoctor);
-app.use("/",DoctorDetails);
-app.use("/",Makeappoinment);
+app.use("/",verify,ManageDoctor);
+app.use("/",verify,DoctorDetails);
+app.use("/",verify,Makeappoinment);
 
 
 
