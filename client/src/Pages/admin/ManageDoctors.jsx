@@ -213,7 +213,7 @@ useEffect(()=>{
 
             </div>
             
-            <div className="router-con">
+            <div className="router-con" onClick={()=>{navigate("/manageappoinments")}}>
                 <img src="https://cdn-icons-png.flaticon.com/128/17385/17385021.png" alt="Schedule icons" />
                 
             </div>

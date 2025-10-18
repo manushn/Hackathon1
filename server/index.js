@@ -13,6 +13,7 @@ const ManageDoctor=require("./routes/doctors/ManageDoctors");
 
 const DoctorDetails=require("./routes/doctors/DoctorDetails");
 const Makeappoinment=require("./routes/Appoinment/Makeappoinment");
+const ManageAppoinments=require("./routes/doctors/ManageAppoinments");
 
 app.use(cors({ origin: "*" }));
 app.use(express.json());
@@ -33,7 +34,7 @@ app.use("/",Login);
 app.use("/",verify,ManageDoctor);
 app.use("/",verify,DoctorDetails);
 app.use("/",verify,Makeappoinment);
-
+app.use("/",verify,ManageAppoinments);
 
 
 app.listen(port,()=>{
