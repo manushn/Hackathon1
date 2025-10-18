@@ -124,7 +124,7 @@ router.post("/register-patient", async (req, res) => {
     await newPatient.save();
 
     token = jwt.sign(
-      { id: newPatient._id, email: newPatient.email },
+      { id: newPatient._id, email: newPatient.email ,role:"patient"},
       process.env.JWT_SECRET,
       { expiresIn: "12hr" }
     );
@@ -212,7 +212,7 @@ router.post("/login-otp", async (req, res) => {
 
     
     const token = jwt.sign(
-      { id: user.doc_id, role: user.role, email: user.email },
+      { id: user._id, role: user.role, email: user.email },
       process.env.JWT_SECRET,
       { expiresIn: "12hr" }
     );

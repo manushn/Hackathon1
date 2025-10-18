@@ -6,12 +6,14 @@ const cors=require("cors");
 require('dotenv').config()
 
 const port=process.env.PORT||8080;
+const verify=require("./middleware/VerifyToken");
 
 const Login=require("./routes/auths/auth"); 
 const ManageDoctor=require("./routes/doctors/ManageDoctors");
 
 const DoctorDetails=require("./routes/doctors/DoctorDetails");
 const Makeappoinment=require("./routes/Appoinment/Makeappoinment");
+const ManageAppoinments=require("./routes/doctors/ManageAppoinments");
 
 app.use(cors({ origin: "*" }));
 app.use(express.json());
@@ -29,10 +31,10 @@ ConnectAtlas()
 
 app.use("/upload", express.static("upload"));
 app.use("/",Login);
-app.use("/",ManageDoctor);
-app.use("/",DoctorDetails);
-app.use("/",Makeappoinment);
-
+app.use("/",verify,ManageDoctor);
+app.use("/",verify,DoctorDetails);
+app.use("/",verify,Makeappoinment);
+app.use("/",verify,ManageAppoinments);
 
 
 app.listen(port,()=>{

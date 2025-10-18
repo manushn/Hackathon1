@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 import "./css/bookappoinments.css"
 
 import Header from '../../components/header'
@@ -8,9 +9,13 @@ import { useEffect } from 'react';
 import { Calendar, CheckCircle } from 'lucide-react';
 import Footers from "../../components/Footers";
 
+const Token=sessionStorage.getItem("Token");
+
 
 
 function BookAppoinments() {
+
+const navigate=useNavigate();
 
 const [searchBox,setSearchBox]=useState("General");
 const [doctors,setDoctors]=useState([]);
@@ -54,7 +59,23 @@ const searchDoctors=async()=>{
             setSearchBox("General");
             return;
         } 
-        const response=await axios.get(`${import.meta.env.VITE_BACKEND_URL}/csearchdoctors?query=${searchBox}`);
+        const response=await axios.get(`${import.meta.env.VITE_BACKEND_URL}/csearchdoctors?query=${searchBox}`,
+            {
+          headers: {
+            Authorization: `Bearer ${Token}`,
+            "Content-Type": "application/json",
+          },
+        }
+
+        );
+        if(response.data.InvalidToken){
+            console.log("Invalid Token dedected Loging out...")
+            sessionStorage.removeItem("Token")
+            sessionStorage.removeItem("Role")
+            sessionStorage.removeItem("Username")
+            navigate("/")
+
+        }
         if(response.data.doctors){
             setDoctors(response.data.doctors);
         }else{
@@ -133,8 +154,23 @@ const searchDoctors=async()=>{
                     date: formatted,
                     slot: selectedSlot,
                     patientemail: sessionStorage.getItem("Username"),
-                });
+                },
+                {
+                    headers: {
+                    Authorization: `Bearer ${Token}`,
+                    "Content-Type": "application/json",
+                    },
+                }
+            );
 
+            if(response.data.InvalidToken){
+            console.log("Invalid Token dedected Loging out...")
+            sessionStorage.removeItem("Token")
+            sessionStorage.removeItem("Role")
+            sessionStorage.removeItem("Username")
+            navigate("/")
+
+        }
                 if(response.data.emessage){
                     alert(response.data.emessage)
                 }

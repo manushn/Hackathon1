@@ -9,6 +9,9 @@ const upload = require("../../config/multerConfig");
 
 
 router.post("/adddoctor", upload.single("profile"), async (req, res) => {
+  if (req.tokenData.role!='doctor'){
+     return res.status(400).json({emessage:"Invalid Access!"})
+  }
   try {
     let photo_url = "https://res.cloudinary.com/dxpawc7lh/image/upload/v1759649101/defauladoc_edby2z.png";
     let photo_id = "";
@@ -69,6 +72,9 @@ router.post("/adddoctor", upload.single("profile"), async (req, res) => {
 
 
 router.delete("/deletedoctor/:id", async (req, res) => {
+  if (req.tokenData.role!='doctor'){
+     return res.status(400).json({emessage:"Invalid Access!"})
+  }
   try {
     
     const doctor = await Doctor.findById(req.params.id);
@@ -99,6 +105,9 @@ router.delete("/deletedoctor/:id", async (req, res) => {
 });
 
 router.get("/getdoctors", async (req, res) => {
+  if (req.tokenData.role!='doctor'){
+     return res.status(400).json({emessage:"Invalid Access!"})
+  }
   try {
     const doctors = await Doctor.find({},"doc_id prefix first_name last_name specialization profile_url").sort({ createdAt: -1 });
     res.status(200).json({doctors:doctors});
@@ -108,6 +117,9 @@ router.get("/getdoctors", async (req, res) => {
 });
 
 router.get("/getdoctor/:id", async (req, res) => {
+  if (req.tokenData.role!='doctor'){
+     return res.status(400).json({emessage:"Invalid Access!"})
+  }
   try {
     const doctor = await Doctor.findById(req.params.id);
     if (!doctor) {
@@ -120,6 +132,9 @@ router.get("/getdoctor/:id", async (req, res) => {
 });
 
 router.get("/searchdoctors", async (req, res) => {
+  if (req.tokenData.role!='doctor'){
+     return res.status(400).json({emessage:"Invalid Access!"})
+  }
   try {
     const query = req.query.query;
     if(!query || query.trim()===""){

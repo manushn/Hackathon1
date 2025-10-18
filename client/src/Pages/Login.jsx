@@ -50,7 +50,7 @@ function Login() {
       return
     }
     try{
-
+      setIsloading(true);
       const response= await axios.post(`${import.meta.env.VITE_BACKEND_URL}/doctor-otp`,{
         doc_id:Doc_id
       });
@@ -80,7 +80,7 @@ function Login() {
       return
     }
     try{
-
+      setIsloading(true);
       const response= await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login-otp`,{
         doc_id:Doc_id,otp:Otp
       });
@@ -133,11 +133,11 @@ function Login() {
           <div className="login-btn">
             {IsOtp?(
               <>
-              <button onClick={()=>{handleLogin()}}>Submit</button>
+              <button onClick={()=>{handleLogin()}}>{Isloading?("Submitting"):("Submit")}</button>
               </>
             ):(
               <>
-              <button onClick={()=>{handleOtp()}}>Send OTP</button>
+              <button onClick={()=>{handleOtp()}}>{Isloading?("Sending.."):("Send OTP")}</button>
               </>
             )}
           </div>

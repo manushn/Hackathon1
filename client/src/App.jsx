@@ -9,6 +9,7 @@ const LoginPage=lazy(()=>import("./Pages/Login"))
 const AdminPage=lazy(()=>import("./Pages/admin/AdminDash"))
 const AdminDoctorManage=lazy(()=>import("./Pages/admin/ManageDoctors"));
 const AdminDoctorAdding=lazy(()=>import("./Pages/admin/DoctorAdding"));
+const AdminAppoinments=lazy(()=>import("./Pages/admin/ManageAppoinments"));
 
 const Verifyaccound=lazy(()=>import("./Pages/clientp/Verifyaccound"));
 const Bookappointment=lazy(()=>import("./Pages/clientp/BookAppoinments"));
@@ -38,6 +39,12 @@ function App() {
         <Route path='/adddoctors' element={
           <ProtectedRoute>
             <AdminDoctorAdding/>
+          </ProtectedRoute>
+
+        }/>
+        <Route path='/manageappoinments' element={
+          <ProtectedRoute>
+            <AdminAppoinments/>
           </ProtectedRoute>
 
         }/>

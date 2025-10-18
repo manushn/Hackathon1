@@ -161,7 +161,7 @@ function Home() {
 
         <div className="footer-contact">
           <h3>Contact</h3>
-          <p>Email: support@mcare.com</p>
+          <p>Email: mcareonline24@gmail.com</p>
           <p>Phone: +91 6382360895</p>
         </div>
       </div>

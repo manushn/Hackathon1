@@ -29,7 +29,7 @@ function AdminDash() {
             <div className="admindash-body-actions">
                 <h3>Quick Actions</h3>
                 <div className="admindash-body-actions-btn">
-                    <button>Manage Appoinments</button>
+                    <button onClick={()=>{navigate("/manageappoinments")}} >View Appoinments</button>
                     <button onClick={()=>{navigate("/managedoctors")}}>Manage Doctors</button>
                 </div>
                 
@@ -42,7 +42,7 @@ function AdminDash() {
 
             </div>
             
-            <div className="router-con">
+            <div className="router-con" onClick={()=>{navigate("/manageappoinments")}}>
                 <img src="https://cdn-icons-png.flaticon.com/128/17385/17385021.png" alt="Schedule icons" />
                 
             </div>
